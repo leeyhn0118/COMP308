@@ -1,0 +1,51 @@
+Community Post ID: 1
+Title: New Bus Routes Announced
+Category: News
+Author: transit_authority
+Content: The city has introduced three new bus routes to improve access to underserved neighborhoods. Full schedules are available
+online.
+Community Post ID: 2
+Title: Transit Fare Increases
+Category: Discussion
+Author: commuter_james
+Content: Just saw the fare increase notice. Daily passes will now be $3.25. Do you think it's justified?
+Community Post ID: 3
+Title: Missing the Express Train?
+Category: Discussion
+Author: rider_mia
+Content: Lately, the 7:45 AM express train has been delayed or canceled. Is this happening to others?
+Community Post ID: 4
+Title: Weekend Subway Closures
+Category: News
+Author: metro_updates
+Content: Due to maintenance work, subway lines 1 and 3 will be closed this weekend. Shuttle buses will be provided.
+Community Post ID: 5
+Title: Carpooling or Public Transit?
+Category: Discussion
+Author: eco_driver
+Content: I’m trying to save on gas and reduce emissions. Is anyone choosing transit over driving lately?
+Community Post ID: 6
+Title: Accessibility Improvements Coming
+Category: News
+Author: city_planner
+Content: Elevators and ramps will be added to five major transit stations by the end of this year.
+Community Post ID: 7
+Title: Monthly Pass vs Pay-as-you-go?
+Category: Discussion
+Author: budget_rider
+Content: I ride 3-4 times a week. Is a monthly pass still worth it, or should I just tap and go?
+Community Post ID: 8
+Title: Park & Ride Lots
+Category: Help Request
+Author: commuter_anna
+Content: Are there any safe Park & Ride lots near the west end station? I’m new to the area.
+Community Post ID: 9
+Title: Bike Racks on Buses
+Category: Discussion
+Author: cyclist_luke
+Content: It’s great that buses now have bike racks! Anyone tried using them during rush hour?
+Community Post ID: 10
+Title: Free Rides for Seniors
+Category: News
+Author: transit_board
+Content: Starting next month, seniors aged 65+ can ride for free during off-peak hours on all city buses and subways

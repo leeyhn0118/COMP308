@@ -1,0 +1,203 @@
+/* Global Styles */
+#root {
+  max-width: 100%;  /* Limit the width of the app */
+  position: relative;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Home Page Styles */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;  /* Light background color */
+  padding: 20px;
+}
+
+.home-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #343a40;  /* Dark gray text */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.home-message {
+  font-size: 1.2rem;
+  color: #6c757d;  /* Lighter gray text */
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;  /* Space between buttons */
+}
+
+.nav-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  text-decoration: none;  /* Remove underline from link */
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;  /* Darker blue on hover */
+}
+
+@media (min-width: 576px) {
+  .home-container {
+    padding: 40px;
+  }
+
+  .home-title {
+    font-size: 3.5rem;
+  }
+
+  .home-message {
+    font-size: 1.4rem;
+  }
+
+  .nav-button {
+    padding: 15px 30px;  /* Larger buttons on larger screens */
+  }
+}
+
+/* Shared Form Styles for Login and Register */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;  /* Light background color */
+  padding: 20px;
+}
+
+.form-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;  /* Maximum form width */
+}
+
+.form-title {
+  font-size: 2rem;
+  color: #343a40;  /* Dark gray text */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.alert {
+  margin-top: 15px;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid transparent;
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #007bff;
+  padding: 10px 20px;
+  position: fixed; /* Fix the navbar to the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Make the navbar stretch across the full width */
+  z-index: 1000; /* Make sure the navbar is above other content */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-link:hover {
+  background-color: #0056b3;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.username {
+  color: white;
+  font-size: 1rem;
+}
+
+/* Add a padding to the body to prevent the navbar from overlapping content */
+body {
+  padding-top: 70px; /* Adjust based on the height of your navbar */
+}

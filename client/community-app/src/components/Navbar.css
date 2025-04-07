@@ -1,0 +1,96 @@
+/* Navbar Styles */
+.navbar {
+    background-color: #007bff;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Keep navbar on top */
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-link:hover {
+    background-color: #0056b3;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .username {
+    color: white;
+    font-size: 1rem;
+  }
+  
+/* Add these styles to your Navbar.css */
+
+/* Auth links container */
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between links if you add more */
+  }
+  
+  /* Hello link styling */
+  .nav-link {
+    color: #3498db; /* Blue color to match your theme */
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+  
+  .nav-link:hover {
+    color: #2980b9; /* Darker blue on hover */
+    background-color: rgba(52, 152, 219, 0.1); /* Light blue background on hover */
+    border-color: rgba(52, 152, 219, 0.2);
+    transform: translateY(-1px);
+  }
+  
+  /* Active state */
+  .nav-link:active {
+    transform: translateY(0);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .auth-links {
+      gap: 10px;
+    }
+    
+    .nav-link {
+      padding: 6px 10px;
+      font-size: 0.9rem;
+    }
+  }

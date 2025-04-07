@@ -1,0 +1,82 @@
+/* Home.css */
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  .home-container h1 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+  
+  .links-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .home-link {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .home-link:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .return-btn {
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+  }
+  
+  .return-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .links-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .home-container h1 {
+      font-size: 2rem;
+    }
+    
+    .return-btn {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
