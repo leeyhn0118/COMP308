@@ -22,6 +22,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         enum: ['resident', 'business_owner', 'community_organizer'] // Allowed roles
     },
+    interests: {
+        type: [String],
+        default: []
+      },
+    location: {
+        type: String,
+        default: ''
+    },
     createdAt: { 
         type: Date, 
         default: Date.now 

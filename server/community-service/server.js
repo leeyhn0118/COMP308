@@ -17,7 +17,9 @@ import jwt from 'jsonwebtoken';
 import connectDB from './config/mongoose.js'; // MongoDB connection
 import typeDefs from './graphql/typeDefs.js'; // GraphQL type definitions
 import resolvers from './graphql/resolvers.js'; // Core resolvers
-import aiResolvers from './graphql/aiResolvers.js'; // AI-enhanced resolvers
+import emergencyResolvers from './graphql/emergencyResolvers.js';
+import volunteerMatchingResolvers from './graphql/volunteerMatchingResolvers.js';
+import eventResolvers from './graphql/eventResolvers.js';
 
 // Log JWT_SECRET in development mode for debugging
 console.log("🔍 JWT_SECRET in community-service:", process.env.JWT_SECRET);
@@ -50,7 +52,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // ✅ Merge core and AI resolvers
 const mergedResolvers = {
     ...resolvers,
-    ...aiResolvers,
+    ...emergencyResolvers,
+    ...volunteerMatchingResolvers,
+    ...eventResolvers,
 };
 
 // ✅ Build schema using merged resolvers

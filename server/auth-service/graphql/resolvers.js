@@ -22,7 +22,7 @@ const resolvers = {
 
   Mutation: {
     // Register a new user
-    register: async (_, { username, email, password, role }) => {
+    register: async (_, { username, email, password, role, interests, location }) => {
       // Check if the user already exists by email
       const existingUser = await User.findOne({ email });
       if (existingUser) {
@@ -38,6 +38,8 @@ const resolvers = {
         email,
         password,
         role,
+        interests: interests || [],
+        location: location || '',
       });
 
       // Save the new user to the database
@@ -45,7 +47,7 @@ const resolvers = {
 
       // Generate a JWT token for the newly created user
       const token = jwt.sign(
-        { id: newUser._id.toString(), role: newUser.role },
+        { id: newUser._id.toString(), role: newUser.role, interests: newUser.interests, location: newUser.location, },
         config.JWT_SECRET,
         { expiresIn: '1d' }
       );
@@ -85,7 +87,7 @@ const resolvers = {
 
       // Generate a JWT token for the authenticated user
       const token = jwt.sign(
-        { id: user._id.toString(), role: user.role },
+        { id: user._id.toString(), role: user.role, interests: newUser.interests, location: newUser.location, },
         config.JWT_SECRET,
         { expiresIn: '1d' }
       );

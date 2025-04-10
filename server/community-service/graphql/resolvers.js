@@ -45,6 +45,10 @@ const resolvers = {
                 throw new Error('You must be logged in to create a post');
             }
 
+            if (user.role !== 'resident') {
+                throw new Error('Only residents can create community posts')
+            }
+
             try {
                 const newPost = new CommunityPost({
                     author: user.id,  // Store only the userId, don't populate
@@ -120,7 +124,11 @@ const resolvers = {
             if (!user) {
                 throw new Error('You must be logged in to create a help request');
             }
-        
+            
+            if (user.role !== 'resident') {
+                throw new Error('Only residents can create a help request')
+            }
+
             try {
                 const newHelpRequest = new HelpRequest({
                     author: user.id,  // Ensure the logged-in user's ID is passed here

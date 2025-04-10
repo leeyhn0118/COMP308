@@ -5,9 +5,9 @@ dotenv.config();
 
 // Configuration for auth-service
 export const config = {
-    db: process.env.AUTH_MONGO_URI,
+    db: process.env.AI_MONGO_URI,
     JWT_SECRET: process.env.JWT_SECRET,
-    port: process.env.AUTH_PORT || 4001,
+    port: process.env.AI_PORT || 4004,
 };
 
 // Log in development mode (only prints in development)

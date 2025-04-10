@@ -6,6 +6,8 @@ const typeDefs = gql`
         username: String!
         email: String!
         role: String!
+        interests: [String]
+        location: String
         createdAt: String!
     }
 
@@ -19,7 +21,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        register(username: String!, email: String!, password: String!, role: String!): AuthPayload!
+        register(username: String!, email: String!, password: String!, role: String!, interests: [String], location: String): AuthPayload!
         login(email: String!, password: String!): AuthPayload!
     }
 `;

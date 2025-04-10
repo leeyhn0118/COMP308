@@ -34,11 +34,33 @@ const typeDefs = gql`
         updatedAt: String
     }
 
-    # AIResponse type returned by the communityAIQuery
-    type AIResponse {
-        text: String!
-        suggestedQuestions: [String!]!
-        retrievedPosts: [CommunityPost!]!
+    type EmergencyAlert {
+        id: ID!
+        author: User
+        title: String!
+        message: String!
+        location: String!
+        isResolved: Boolean!
+        createdAt: String!
+        updatedAt: String
+    }
+
+    type Event {
+        id: ID!
+        title: String!
+        description: String
+        location: String
+        startTime: String!
+        endTime: String!
+        organizerId: ID!
+        attendees: [ID!]!
+        createdAt: String!
+        updatedAt: String
+    }
+
+    type EventTimingSuggestion {
+        day: String!
+        hour: Int!
     }
 
     # Query to retrieve the community posts and help requests
@@ -48,8 +70,13 @@ const typeDefs = gql`
         getAllHelpRequests: [HelpRequest!]!
         getHelpRequest(id: ID!): HelpRequest
 
-        # AI-powered community query
-        communityAIQuery(input: String!, userId: String!): AIResponse!
+        getAllEmergencyAlerts: [EmergencyAlert!]!
+        getEmergencyAlert(id: ID!): EmergencyAlert
+
+        matchVolunteers(helpRequestId: ID!): [User!]!
+
+        getAllEvents: [Event!]!
+        getEventById(id: ID!): Event
     }
 
     # Mutations for creating, updating, and deleting community posts and help requests
@@ -84,6 +111,44 @@ const typeDefs = gql`
         ): HelpRequest!
 
         deleteHelpRequest(id: ID!): Boolean!
+
+        createEmergencyAlert(
+            title: String!
+            message: String!
+            location: String!
+        ): EmergencyAlert!
+
+        updateEmergencyAlert(
+            id: ID!
+            title: String
+            message: String
+            location: String
+            isResolved: Boolean
+        ): EmergencyAlert!
+
+        deleteEmergencyAlert(id: ID!): Boolean!
+        
+        createEvent(
+            title: String!
+            description: String
+            location: String
+            startTime: String!
+            endTime: String!
+        ): Event!
+
+        updateEvent(
+            id: ID!
+            title: String
+            description: String
+            location: String
+            startTime: String
+            endTime: String
+        ): Event!
+
+        deleteEvent(id: ID!): Boolean!
+
+        joinEvent(id: ID!): Event!
+        leaveEvent(id: ID!): Event!      
     }
 `;
 

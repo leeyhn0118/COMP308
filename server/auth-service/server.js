@@ -15,6 +15,7 @@ import jwt from 'jsonwebtoken';
 import connectDB from './config/mongoose.js'; // MongoDB connection
 import typeDefs from './graphql/typeDefs.js'; // GraphQL type definitions
 import resolvers from './graphql/resolvers.js'; // GraphQL resolvers
+import userRoutes from './routes/userRoutes.js'
 
 // Log JWT_SECRET in development mode for debugging
 console.log("🔍 JWT_SECRET in auth-service:", process.env.JWT_SECRET);
@@ -35,6 +36,8 @@ app.use(cors({
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/api/user', userRoutes);
 
 // ✅ Remove the parse() function. Use typeDefs directly.
 const schema = buildSubgraphSchema([{ typeDefs, resolvers }]);
@@ -60,7 +63,7 @@ async function startServer() {
                 try {
                     // Verify the token using JWT_SECRET
                     const decoded = jwt.verify(token, config.JWT_SECRET);
-                    user = { username: decoded.username }; // Add user to context
+                    user = { id: decoded.id, role: decoded.role }; // Add user and role to context
                 } catch (error) {
                     console.error("Error verifying token:", error);
                 }

@@ -3,11 +3,11 @@ import dotenv from 'dotenv';
 // Load environment variables from the .env file
 dotenv.config();
 
-// Configuration for auth-service
+// Configuration for business-service
 export const config = {
-    db: process.env.AUTH_MONGO_URI,
+    db: process.env.BUSINESS_MONGO_URI,
     JWT_SECRET: process.env.JWT_SECRET,
-    port: process.env.AUTH_PORT || 4001,
+    port: process.env.BUSINESS_PORT || 4003,
 };
 
 // Log in development mode (only prints in development)
