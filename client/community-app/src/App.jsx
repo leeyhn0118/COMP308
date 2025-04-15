@@ -1,19 +1,16 @@
 // src/App.jsx
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Home from './components/Home'; // Import Home component
-import CommunityPosts from './components/communityPosts/CommunityPosts'; // Import CommunityPosts component
-import CreatePost from './components/communityPosts/CreatePost'; // Import CreatePost component
-import HelpRequests from './components/helpRequests/HelpRequests'; // Import HelpRequests component
-import CreateHelpRequest from './components/helpRequests/CreatHelpRequest';
-import Navbar from './components/Navbar';  // Import Navbar component
-import ChatBot from './components/ChatBot';  // Import ChatBot component
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home"; // Import Home component
+import CommunityPosts from "./components/communityPosts/CommunityPosts"; // Import CommunityPosts component
+import CreatePost from "./components/communityPosts/CreatePost"; // Import CreatePost component
+import HelpRequests from "./components/helpRequests/HelpRequests"; // Import HelpRequests component
+import CreateHelpRequest from "./components/helpRequests/CreatHelpRequest";
+import ChatBot from "./components/ChatBot"; // Import ChatBot component
 
 function App() {
   return (
     <div className="app-container">
-      <Navbar />  {/* Navbar will be visible on all pages */}
-      
       <Routes>
         <Route path="/" element={<Home />} /> {/* Home route displaying community posts */}
         <Route path="/community-posts" element={<CommunityPosts />} /> {/* Community Posts page */}

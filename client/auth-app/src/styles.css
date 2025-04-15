@@ -1,0 +1,13 @@
+.auth-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Reset any flex or centering that might be inherited */
+#root {
+  width: 100%;
+  height: auto;
+  display: block;
+}

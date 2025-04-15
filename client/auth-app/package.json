@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && vite preview --port 3001"
   },
   "dependencies": {
     "@apollo/client": "^3.13.5",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@originjs/vite-plugin-federation": "^1.4.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
