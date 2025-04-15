@@ -2,12 +2,12 @@ import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   # User Type - Represents the User in the system
-  type User @key(fields: "id") @extends {
-    id: ID! @external
-    username: String @external
-    email: String! @external
-    role: String! @external
-    createdAt: String! @external
+  type User {
+    id: ID!
+    username: String
+    email: String!
+    role: String!
+    createdAt: String!
   }
 
   # Community Post Type - Represents a community post
@@ -45,6 +45,10 @@ const typeDefs = gql`
     updatedAt: String
   }
 
+  type Subscription {
+    emergencyAlertCreated: EmergencyAlert!
+  }
+
   type Event {
     id: ID!
     title: String!
@@ -70,7 +74,7 @@ const typeDefs = gql`
     getAllHelpRequests: [HelpRequest!]!
     getHelpRequest(id: ID!): HelpRequest
 
-    getAllEmergencyAlerts: [EmergencyAlert!]!
+    getAllEmergencyAlerts: [EmergencyAlert!]
     getEmergencyAlert(id: ID!): EmergencyAlert
 
     matchVolunteers(helpRequestId: ID!): [User!]!
@@ -81,22 +85,39 @@ const typeDefs = gql`
 
   # Mutations for creating, updating, and deleting community posts and help requests
   type Mutation {
-    createCommunityPost(title: String!, content: String!, category: String!, aiSummary: String): CommunityPost!
+    createCommunityPost(
+      title: String!
+      content: String!
+      category: String!
+      aiSummary: String
+    ): CommunityPost!
 
-    updateCommunityPost(id: ID!, title: String, content: String, category: String, aiSummary: String): CommunityPost!
+    updateCommunityPost(
+      id: ID!
+      title: String
+      content: String
+      category: String
+      aiSummary: String
+    ): CommunityPost!
 
     deleteCommunityPost(id: ID!): Boolean!
 
     createHelpRequest(description: String!, location: String): HelpRequest!
 
-    updateHelpRequest(id: ID!, description: String, location: String, isResolved: Boolean): HelpRequest!
+    updateHelpRequest(
+      id: ID!
+      description: String
+      location: String
+      isResolved: Boolean
+    ): HelpRequest!
 
     deleteHelpRequest(id: ID!): Boolean!
 
-    volunteerForHelpRequest(helpRequestId: ID!): HelpRequest!
-    withdrawFromHelpRequest(helpRequestId: ID!): HelpRequest!
-
-    createEmergencyAlert(title: String!, message: String!, location: String!): EmergencyAlert!
+    createEmergencyAlert(
+      title: String!
+      message: String!
+      location: String!
+    ): EmergencyAlert
 
     updateEmergencyAlert(
       id: ID!
@@ -108,7 +129,13 @@ const typeDefs = gql`
 
     deleteEmergencyAlert(id: ID!): Boolean!
 
-    createEvent(title: String!, description: String, location: String, startTime: String!, endTime: String!): Event!
+    createEvent(
+      title: String!
+      description: String
+      location: String
+      startTime: String!
+      endTime: String!
+    ): Event!
 
     updateEvent(
       id: ID!

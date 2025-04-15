@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
-  type User @key(fields: "id") {
+  type User {
     id: ID!
     username: String!
     email: String!
@@ -27,10 +27,11 @@ const typeDefs = gql`
       password: String!
       role: String!
       interests: [String]
-      location: String
+      location: String!
     ): AuthPayload!
     login(email: String!, password: String!): AuthPayload!
   }
 `;
 
 export default typeDefs;
+

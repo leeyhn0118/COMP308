@@ -23,8 +23,12 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "graphql": "^16.10.0",
+    "graphql-subscriptions": "^1.2.1",
+    "graphql-ws": "^6.0.4",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.10.2"
+    "lodash": "^4.17.21",
+    "mongoose": "^8.10.2",
+    "ws": "^8.18.1"
   },
   "type": "module",
   "devDependencies": {
