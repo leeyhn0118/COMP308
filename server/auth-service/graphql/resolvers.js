@@ -4,6 +4,12 @@ import User from "../models/User.js"; // Import the User model
 import { config } from "../config/config.js"; // Import JWT secret from config
 
 const resolvers = {
+  User: {
+    __resolveReference: async (reference) => {
+      return await User.findById(reference.id);
+    }
+  },
+
   Query: {
     // Fetch the current authenticated user (this is only valid if token is sent with request)
     currentUser: async (_, __, { user }) => {
@@ -15,17 +21,14 @@ const resolvers = {
         username: user.username,
         email: user.email,
         role: user.role,
-        createdAt: user.createdAt,
+        createdAt: user.createdAt
       };
-    },
+    }
   },
 
   Mutation: {
     // Register a new user
-    register: async (
-      _,
-      { username, email, password, role, interests, location },
-    ) => {
+    register: async (_, { username, email, password, role, interests, location }) => {
       // Check if the user already exists by email
       const existingUser = await User.findOne({ email });
       if (existingUser) {
@@ -42,7 +45,7 @@ const resolvers = {
         password,
         role,
         interests: interests || [],
-        location: location || "",
+        location: location || ""
       });
 
       // Save the new user to the database
@@ -54,10 +57,10 @@ const resolvers = {
           id: newUser._id.toString(),
           role: newUser.role,
           interests: newUser.interests,
-          location: newUser.location,
+          location: newUser.location
         },
         config.JWT_SECRET,
-        { expiresIn: "1d" },
+        { expiresIn: "1d" }
       );
 
       // Return the token and user data
@@ -68,8 +71,8 @@ const resolvers = {
           username: newUser.username,
           email: newUser.email,
           role: newUser.role,
-          createdAt: newUser.createdAt.toISOString(),
-        },
+          createdAt: newUser.createdAt.toISOString()
+        }
       };
     },
 
@@ -99,10 +102,10 @@ const resolvers = {
           username: user.username,
           role: user.role,
           interests: user.interests,
-          location: user.location,
+          location: user.location
         },
         config.JWT_SECRET,
-        { expiresIn: "1d" },
+        { expiresIn: "1d" }
       );
 
       // Set the JWT token as a cookie in the response (for client-side handling)
@@ -110,7 +113,7 @@ const resolvers = {
         httpOnly: true, // Prevents JavaScript access
         // secure: false, // Set to true for production (HTTPS)
         // sameSite: 'None', // Set 'None' if using cross-origin requests
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
       });
 
       console.log("✅ Cookie set in response:", res.getHeaders()["set-cookie"]);
@@ -124,11 +127,11 @@ const resolvers = {
           username: user.username,
           email: user.email,
           role: user.role,
-          createdAt: user.createdAt.toISOString(),
-        },
+          createdAt: user.createdAt.toISOString()
+        }
       };
-    },
-  },
+    }
+  }
 };
 
 export default resolvers;

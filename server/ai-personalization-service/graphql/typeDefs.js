@@ -1,26 +1,28 @@
-import { gql } from 'apollo-server-express';
+import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
-    type AIResponse {
-        text: String!
-        suggestedQuestions: [String!]!
-        retrievedPosts: [String!]!
-    }
+  extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@external", "@shareable"])
 
-    type EventTimingSuggestion {
-        day: String!
-        hour: Int!
-    }
+  type AIResponse {
+    text: String!
+    suggestedQuestions: [String!]!
+    retrievedPosts: [String!]!
+  }
 
-    type Query {
-        communityAIQuery(input: String!, userId: String!): AIResponse!
-    }
+  type EventTimingSuggestion @shareable {
+    day: String! @shareable
+    hour: Int! @shareable
+  }
 
-    type Mutation {
-        analyzeReviewSentiment(reviewId: ID!): String!
-        matchVolunteersForHelpRequest(helpRequestId: ID!, userId: String!): [String!]!
-        recommendBestEventTiming: EventTimingSuggestion!
-    }
+  type Query {
+    communityAIQuery(input: String!, userId: String!): AIResponse!
+  }
+
+  type Mutation {
+    analyzeReviewSentiment(reviewId: ID!): String!
+    matchVolunteersForHelpRequest(helpRequestId: ID!, userId: String!): [String!]!
+    recommendBestEventTiming: EventTimingSuggestion!
+  }
 `;
 
 export default typeDefs;

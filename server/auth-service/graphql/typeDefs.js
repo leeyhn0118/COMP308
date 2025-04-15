@@ -1,14 +1,16 @@
 import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
-  type User {
+  extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable"])
+
+  type User @key(fields: "id") {
     id: ID!
-    username: String!
-    email: String!
-    role: String!
+    username: String! @shareable
+    email: String! @shareable
+    role: String! @shareable
     interests: [String]
     location: String
-    createdAt: String!
+    createdAt: String! @shareable
   }
 
   type AuthPayload {
@@ -34,4 +36,3 @@ const typeDefs = gql`
 `;
 
 export default typeDefs;
-

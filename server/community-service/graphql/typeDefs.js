@@ -85,39 +85,19 @@ const typeDefs = gql`
 
   # Mutations for creating, updating, and deleting community posts and help requests
   type Mutation {
-    createCommunityPost(
-      title: String!
-      content: String!
-      category: String!
-      aiSummary: String
-    ): CommunityPost!
+    createCommunityPost(title: String!, content: String!, category: String!, aiSummary: String): CommunityPost!
 
-    updateCommunityPost(
-      id: ID!
-      title: String
-      content: String
-      category: String
-      aiSummary: String
-    ): CommunityPost!
+    updateCommunityPost(id: ID!, title: String, content: String, category: String, aiSummary: String): CommunityPost!
 
     deleteCommunityPost(id: ID!): Boolean!
 
     createHelpRequest(description: String!, location: String): HelpRequest!
 
-    updateHelpRequest(
-      id: ID!
-      description: String
-      location: String
-      isResolved: Boolean
-    ): HelpRequest!
+    updateHelpRequest(id: ID!, description: String, location: String, isResolved: Boolean): HelpRequest!
 
     deleteHelpRequest(id: ID!): Boolean!
 
-    createEmergencyAlert(
-      title: String!
-      message: String!
-      location: String!
-    ): EmergencyAlert
+    createEmergencyAlert(title: String!, message: String!, location: String!): EmergencyAlert
 
     updateEmergencyAlert(
       id: ID!
@@ -129,13 +109,7 @@ const typeDefs = gql`
 
     deleteEmergencyAlert(id: ID!): Boolean!
 
-    createEvent(
-      title: String!
-      description: String
-      location: String
-      startTime: String!
-      endTime: String!
-    ): Event!
+    createEvent(title: String!, description: String, location: String, startTime: String!, endTime: String!): Event!
 
     updateEvent(
       id: ID!

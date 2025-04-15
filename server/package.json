@@ -5,6 +5,12 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
+    "start:auth": "cd auth-service && npm run start",
+    "start:community": "cd community-service && npm run start",
+    "start:business": "cd business-service && node server.js",
+    "start:ai": "cd ai-personalization-service && node server.js",
+    "start:gateway": "node gateway.js",
+    "start:all": "concurrently \"npm run start:auth\" \"npm run start:community\" \"npm run start:business\" \"npm run start:ai\" \"wait-on tcp:4001 tcp:4002 tcp:4003 tcp:4004 && npm run start:gateway\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -30,6 +36,8 @@
   },
   "type": "module",
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "wait-on": "^8.0.3"
   }
 }
