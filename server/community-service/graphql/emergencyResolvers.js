@@ -1,6 +1,5 @@
 import EmergencyAlert from "../models/EmergencyAlert.js";
 import pubsub from "../utils/pubsub.js";
-import { withFilter } from "graphql-subscriptions";
 
 console.log("🔁 pubsub asyncIterator type:", typeof pubsub.asyncIterator);
 
@@ -122,23 +121,25 @@ const emergencyResolvers = {
   },
   Subscription: {
     emergencyAlertCreated: {
-      subscribe: withFilter(
-        () => pubsub.asyncIterator([EMERGENCY_ALERT_CREATED]),
-        (payload, variables, context) => {
-          console.log("📡 SUB FILTER CHECK:", {
-            alertLocation: payload.emergencyAlertCreated.location,
-            userLocation: context.user?.location,
-          });
-
-          return (
-            context.user &&
-            payload.emergencyAlertCreated.location.toLowerCase() ===
-              context.user.location.toLowerCase()
-          );
-        },
-      ),
+      subscribe: () => pubsub.asyncIterator([EMERGENCY_ALERT_CREATED]),
     },
   },
 };
 
 export default emergencyResolvers;
+
+// subscribe: withFilter(
+//   () => pubsub.asyncIterator([EMERGENCY_ALERT_CREATED]),
+//   (payload, variables, context) => {
+//     console.log("📡 SUB FILTER CHECK:", {
+//       alertLocation: payload.emergencyAlertCreated.location,
+//       userLocation: context.user?.location,
+//     });
+//
+//     return (
+//       context.user &&
+//       payload.emergencyAlertCreated.location.toLowerCase() ===
+//         context.user.location.toLowerCase()
+//     );
+//   },
+// ),
