@@ -1,13 +1,26 @@
 import EmergencyAlert from "../models/EmergencyAlert.js";
 import pubsub from "../utils/pubsub.js";
-
-console.log("🔁 pubsub asyncIterator type:", typeof pubsub.asyncIterator);
+import axios from "axios";
 
 const EMERGENCY_ALERT_CREATED = "EMERGENCY_ALERT_CREATED";
 
 const emergencyResolvers = {
+  EmergencyAlert: {
+    author: async (alert) => {
+      try {
+        const { data: user } = await axios.get(
+          `http://localhost:4001/api/user/${alert.author}`,
+        );
+        return user;
+      } catch (err) {
+        console.error("Error resolving author field:", err);
+        return null;
+      }
+    },
+  },
+
   Query: {
-    getAllEmergencyAlert: async () => {
+    getAllEmergencyAlerts: async () => {
       console.log("✅ All alerts:", await EmergencyAlert.find());
       try {
         return await EmergencyAlert.find().sort({ createdAt: -1 });
@@ -18,7 +31,16 @@ const emergencyResolvers = {
     },
     getEmergencyAlert: async (__dirname, { id }) => {
       try {
-        return await EmergencyAlert.findById(id);
+        const alert = await EmergencyAlert.findById(id);
+        if (!alert) {
+          throw new Error("Alert not found");
+        }
+        const user = await axios.get(
+          `http://localhost:4001/api/user/${alert.author}`,
+        );
+        // console.log(alert);
+        // console.log(user.data);
+        return alert;
       } catch (err) {
         console.error("Error fetching emergency alerts by ID", err);
         throw new Error("Failed to fetch emergency alerts by ID");
