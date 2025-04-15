@@ -3,11 +3,12 @@ import { gql } from "apollo-server-express";
 const typeDefs = gql`
   # User Type - Represents the User in the system
   type User {
-    id: ID!
+    _id: ID!
     username: String
-    email: String!
+    email: String
     role: String!
-    createdAt: String!
+    location: String
+    interests: [String]
   }
 
   # Community Post Type - Represents a community post
@@ -74,7 +75,7 @@ const typeDefs = gql`
     getAllHelpRequests: [HelpRequest!]!
     getHelpRequest(id: ID!): HelpRequest
 
-    getAllEmergencyAlerts: [EmergencyAlert!]
+    getAllEmergencyAlerts: [EmergencyAlert!]!
     getEmergencyAlert(id: ID!): EmergencyAlert
 
     matchVolunteers(helpRequestId: ID!): [User!]!
