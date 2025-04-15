@@ -1,14 +1,14 @@
-import bcrypt, { hash } from 'bcrypt'; // For password hashing
-import jwt from 'jsonwebtoken'; // For JWT token generation
-import User from '../models/User.js'; // Import the User model
-import { config } from '../config/config.js'; // Import JWT secret from config
+import bcrypt, { hash } from "bcrypt"; // For password hashing
+import jwt from "jsonwebtoken"; // For JWT token generation
+import User from "../models/User.js"; // Import the User model
+import { config } from "../config/config.js"; // Import JWT secret from config
 
 const resolvers = {
   Query: {
     // Fetch the current authenticated user (this is only valid if token is sent with request)
     currentUser: async (_, __, { user }) => {
       if (!user) {
-        throw new Error('Not authenticated');
+        throw new Error("Not authenticated");
       }
       return {
         id: user.id,
@@ -22,11 +22,14 @@ const resolvers = {
 
   Mutation: {
     // Register a new user
-    register: async (_, { username, email, password, role, interests, location }) => {
+    register: async (
+      _,
+      { username, email, password, role, interests, location },
+    ) => {
       // Check if the user already exists by email
       const existingUser = await User.findOne({ email });
       if (existingUser) {
-        throw new Error('Email is already in use');
+        throw new Error("Email is already in use");
       }
 
       // Hash the password before saving to the database
@@ -39,7 +42,7 @@ const resolvers = {
         password,
         role,
         interests: interests || [],
-        location: location || '',
+        location: location || "",
       });
 
       // Save the new user to the database
@@ -47,9 +50,14 @@ const resolvers = {
 
       // Generate a JWT token for the newly created user
       const token = jwt.sign(
-        { id: newUser._id.toString(), role: newUser.role, interests: newUser.interests, location: newUser.location, },
+        {
+          id: newUser._id.toString(),
+          role: newUser.role,
+          interests: newUser.interests,
+          location: newUser.location,
+        },
         config.JWT_SECRET,
-        { expiresIn: '1d' }
+        { expiresIn: "1d" },
       );
 
       // Return the token and user data
@@ -63,7 +71,6 @@ const resolvers = {
           createdAt: newUser.createdAt.toISOString(),
         },
       };
-
     },
 
     // Login an existing user
@@ -71,7 +78,7 @@ const resolvers = {
       // Find the user by email
       const user = await User.findOne({ email });
       if (!user) {
-        throw new Error('Invalid credentials');
+        throw new Error("Invalid credentials");
       }
 
       // Compare the entered password with the stored password hash
@@ -82,26 +89,32 @@ const resolvers = {
       console.log("Password match result:", isMatch);
 
       if (!isMatch) {
-        throw new Error('Invalid credentials');
+        throw new Error("Invalid credentials");
       }
 
       // Generate a JWT token for the authenticated user
       const token = jwt.sign(
-        { id: user._id.toString(), role: user.role, interests: newUser.interests, location: newUser.location, },
+        {
+          id: user._id.toString(),
+          username: user.username,
+          role: user.role,
+          interests: user.interests,
+          location: user.location,
+        },
         config.JWT_SECRET,
-        { expiresIn: '1d' }
+        { expiresIn: "1d" },
       );
 
       // Set the JWT token as a cookie in the response (for client-side handling)
-      res.cookie('token', token, {
+      res.cookie("token", token, {
         httpOnly: true, // Prevents JavaScript access
         // secure: false, // Set to true for production (HTTPS)
         // sameSite: 'None', // Set 'None' if using cross-origin requests
         maxAge: 24 * 60 * 60 * 1000, // 1 day
       });
 
-      console.log("✅ Cookie set in response:", res.getHeaders()['set-cookie']);
-      console.log("✅ Cookie set:", res.getHeaders()['set-cookie']);
+      console.log("✅ Cookie set in response:", res.getHeaders()["set-cookie"]);
+      console.log("✅ Cookie set:", res.getHeaders()["set-cookie"]);
 
       // Return the token and user data
       return {
